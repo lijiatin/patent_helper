@@ -354,12 +354,11 @@
             preresult = replace_fuc(preresult,key_words,key_words_numeral_dic) #对特征部分进行序号替换
             
             preresult = preresult.strip().split('。')
-            sentences3_list = [ x[x.find('，其特征在于，')+1:] + '。' for x in preresult ][:-1]
-            sentences3_list = [item[5:] for item in sentences3_list]
+           
             #print(sentences3_list)
             finl_rslt = ''
-            for i,j in zip(sentences2_list,sentences3_list):
-                finl_rslt = finl_rslt+(i) + (j) + '\n\n' #拼接前序部分和特征部分
+            for i,j in zip(sentences2_list,preresult):
+                finl_rslt = finl_rslt+(i) + '，'+ (j) + '\n\n' #拼接前序部分和特征部分
 
             return finl_rslt
         else:
