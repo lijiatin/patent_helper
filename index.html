@@ -1,64 +1,88 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title> 附图标记替换</title>
-  <style>
-    /* 设置输入框样式 */
-    textarea, input[type="text"] {
-      width: calc(50% - 5px); /* 让输入框宽度为父容器的50%减去5像素的间距 */
-      padding: 10px; /* 设置内边距 */
-      box-sizing: border-box; /* 设置盒模型为边框盒 */
-      font-size: 14px; /* 设置文字大小 */
-    }
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>附图标记替换</title>
+    <style>
+      /* 设置输入框样式 */
+      textarea,
+      input[type="text"] {
+        width: calc(50% - 5px); /* 让输入框宽度为父容器的50%减去5像素的间距 */
+        padding: 10px; /* 设置内边距 */
+        box-sizing: border-box; /* 设置盒模型为边框盒 */
+        font-size: 14px; /* 设置文字大小 */
+      }
 
-    /* 设置按钮样式 */
-    button {
-      padding: 10px 20px; /* 设置按钮内边距 */
-      box-sizing: border-box; /* 设置盒模型为边框盒 */
-    }
+      /* 设置按钮样式 */
+      button {
+        padding: 10px 20px; /* 设置按钮内边距 */
+        box-sizing: border-box; /* 设置盒模型为边框盒 */
+      }
 
-    /* 设置flex布局样式 */
-    .flex-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px; /* 添加一个底部边距 */
-    }
+      /* 设置flex布局样式 */
+      .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px; /* 添加一个底部边距 */
+      }
 
-    /* 设置特定字符文本框样式 */
-    #specialChar {
-      height: 200px; /* 将特定字符的文本框高度加大一倍 */
-      font-size: 12px; /* 减小文字大小 */
-    }
+      /* 设置特定字符文本框样式 */
+      #specialChar {
+        height: 200px; /* 将特定字符的文本框高度加大一倍 */
+        font-size: 12px; /* 减小文字大小 */
+      }
 
-    /* 设置左侧输入框和右侧输出框的样式 */
-    #inputText, #outputText {
-      height: 200px; /* 将左侧输入框和右侧输出框的高度加大一倍 */
-    }
+      /* 设置左侧输入框和右侧输出框的样式 */
+      #inputText,
+      #outputText {
+        height: 200px; /* 将左侧输入框和右侧输出框的高度加大一倍 */
+      }
 
-    /* 设置单选按钮的样式 */
-    .radio-container {
-      margin-top: 5px; /* 将容器上边距减小为5像素 */
-    }
+      /* 设置单选按钮的样式 */
+      .radio-container {
+        margin-top: 5px; /* 将容器上边距减小为5像素 */
+      }
 
-    /* 设置底部文本显示框样式 */
-    #bottomText {
-      width: calc(50% - 5px); /* 让文本显示框宽度为父容器的50%减去5像素的间距 */
-      padding: 10px; /* 设置内边距 */
-      box-sizing: border-box; /* 设置盒模型为边框盒 */
-      font-size: 14px; /* 设置文字大小 */
-      height: 160px;
-    }
-  </style>
-  <!-- 引入Brython库 -->
-  <script type="text/javascript" src="brython.min.js"></script>
-</head>
-<body onload="brython()">
-  <!-- 使用flex布局来横向排列输入框和输出框 -->
-  <div class="flex-container">
-    <!-- 左侧输入框 -->
-    <textarea id="inputText">1、倾斜式施工升降机的底架，其特征在于，所述底架包括：
+      /* 设置底部文本显示框样式 */
+      #bottomText {
+        width: calc(
+          50% - 5px
+        ); /* 让文本显示框宽度为父容器的50%减去5像素的间距 */
+        padding: 10px; /* 设置内边距 */
+        box-sizing: border-box; /* 设置盒模型为边框盒 */
+        font-size: 14px; /* 设置文字大小 */
+        height: 160px;
+      }
+      .bottom {
+        display: flex;
+        position: relative;
+      }
+      .right {
+        flex: 1;
+        position: absolute;
+        right: 0;
+        /* 
+          display: flex;
+          justify-content: space-between; */
+      }
+      .dw {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: -87px;
+        right: 0;
+      }
+    </style>
+    <!-- 引入Brython库 -->
+    <script type="text/javascript" src="brython.min.js"></script>
+  </head>
+  <body onload="brython()">
+    <!-- 使用flex布局来横向排列输入框和输出框 -->
+    <div class="flex-container">
+      <!-- 左侧输入框 -->
+      <textarea id="inputText">
+1、倾斜式施工升降机的底架，其特征在于，所述底架包括：
 底架连接座（100），用于连接倾斜式施工升降机的导轨架并包括向下伸出的座体连接板组；和
 底架基座（200），包括基座本体和从所述基座本体向上伸出的基座安装板组，所述基座安装板组包括平行间隔布置的第一基座安装板（210）和第二基座安装板（220）；
 其中，所述第一基座安装板（210）与所述第二基座安装板（220）之间形成有用于容纳安装所述座体连接板组且间隔宽度能够调节的安装板间隔空间。
@@ -85,16 +109,18 @@
 9、根据权利要求8所述的底架，其特征在于，所述底架基座连接座（100）还包括为四边框结构的连接座本体和从所述四边框结构的四角向上伸出的多个安装短管，所述倾斜式施工升降机的导轨架通过所述安装短管与所述底架基座连接座连接。
 
 10、倾斜式施工升降机，其特征在于，所述倾斜式升降机包括根据权利要求1~9任意一项所述的底架。
-    </textarea>
-    
-    <!-- 右侧输出框 -->
-    <textarea id="outputText" readonly=""></textarea>
-  </div>
-  
-  <!-- 使用flex布局来横向排列特定字符输入框和处理按钮 -->
-  <div class="flex-container">
-    <!-- 特定字符的文本框 -->
-    <textarea id="specialChar">底架 a
+    </textarea
+      >
+
+      <!-- 右侧输出框 -->
+      <textarea id="outputText" readonly=""></textarea>
+    </div>
+
+    <!-- 使用flex布局来横向排列特定字符输入框和处理按钮 -->
+    <div class="flex-container">
+      <!-- 特定字符的文本框 -->
+      <textarea id="specialChar">
+底架 a
 底架连接座 1
 座体连接板组 2
 
@@ -115,303 +141,324 @@
 --
 底架基座
             
-    </textarea>
-    
-    <!-- 处理按钮和单选按钮的容器 -->
-    <div class="radio-container">
-      <!-- A/B选项的单选按钮 -->
-      <label><input id="optionA" type="radio" name="option" value="clm" checked="">权项</label>
-      <label><input type="radio" name="option" value="des">说明书</label>
-    
-      <!-- 处理按钮 -->
-      <button id="processButton">处理文本</button>
+    </textarea
+      >
+
+      <!-- 处理按钮和单选按钮的容器 -->
+      <div class="radio-container">
+        <!-- A/B选项的单选按钮 -->
+        <label
+          ><input
+            id="optionA"
+            type="radio"
+            name="option"
+            value="clm"
+            checked=""
+          />权项</label
+        >
+        <label><input type="radio" name="option" value="des" />说明书</label>
+
+        <!-- 处理按钮 -->
+        <button id="processButton">处理文本</button>
+      </div>
     </div>
-  </div>
 
-  <!-- 底部文本显示框 -->
-  <div>
-    <textarea id="bottomText"></textarea>
-  </div>
-  
-  <script type="text/python">
-    from browser import document
-    # 在底部文本显示框显示处理后的文本
-    document["bottomText"].value = "使用说明\n1、'++'以上为按照需要进行任意设置的标记，如底架 a,之间用空格隔开等；\n2、'--'以下为可能干扰替换，但无需标记的部分，如底架基座；\n3、++和--之间为按照零件的层级自动增加标记的部分，100开始，第三层后变为字母标号如111a,只支持四层，每层零件数需在9个以下。零件层级由空格或指标符数量控制（建议用制表符tab,层级明显些）。\n4、如果需要标记下层零件,但不想上层零件参与标记可以在上层零件后面加*(如想标记第一基座安装板和第二基座安装板，但不想标记基座安装板，则在基座安装板后加*)。\n所有参与标记的零件名可以相互包含，不会干扰替换。\n权项替换时只会替换每个权项第一个逗号以后的内容。可保存网页，断网后本地运行。\n欢迎PR https://github.com/lijiatin/patent_helper"
-  
-    def finditer(pattern, text):
-      start = 0
-      match = pattern.match(text, start)
-      while match:
-          yield match
-          start = match.end()
-          match = pattern.match(text, start)
+    <!-- 底部文本显示框 -->
+    <div class="bottom">
+      <textarea id="bottomText"></textarea>
+      <div class="right">
+        <div class="dw">
+          <img
+            style="height: 139px"
+            src="https://img2.baidu.com/it/u=3594527988,2947349233&fm=253&fmt=auto&app=138&f=GIF?w=461&h=464"
+            alt=""
+          />
+          <img
+            style="height: 139px"
+            src="https://img2.baidu.com/it/u=3594527988,2947349233&fm=253&fmt=auto&app=138&f=GIF?w=461&h=464"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
 
-    def remove_parentheses(text):
-        result = ""
-        depth = 0  # Track the depth of parentheses nesting
-        for char in text:
-            if char == '（':
-                depth += 1
-            elif char == '）':
-                depth -= 1
-                continue
-            elif depth == 0:
-                result += char
-        return result
+    <script type="text/python">
+      from browser import document
+      # 在底部文本显示框显示处理后的文本
+      document["bottomText"].value = "使用说明\n1、'++'以上为按照需要进行任意设置的标记，如底架 a,之间用空格隔开等；\n2、'--'以下为可能干扰替换，但无需标记的部分，如底架基座；\n3、++和--之间为按照零件的层级自动增加标记的部分，100开始，第三层后变为字母标号如111a,只支持四层，每层零件数需在9个以下。零件层级由空格或指标符数量控制（建议用制表符tab,层级明显些）。\n4、如果需要标记下层零件,但不想上层零件参与标记可以在上层零件后面加*(如想标记第一基座安装板和第二基座安装板，但不想标记基座安装板，则在基座安装板后加*)。\n所有参与标记的零件名可以相互包含，不会干扰替换。\n权项替换时只会替换每个权项第一个逗号以后的内容。可保存网页，断网后本地运行。\n欢迎PR https://github.com/lijiatin/patent_helper"
 
-    def filter_and_remove_elements(lst):
-        #获取无包含关系的关键词字典，以及包含关键字的对象
-        dic_r ={}
-        for i in lst:
-            dic_r[i] = []
-        for i in range(len(lst)):
-            element = lst[i]
-            is_contained = False
-            for j in range(len(lst)):
-                if i != j and element in lst[j]:
-                    is_contained = True
-                    temp = dic_r[element]
-                    temp.append(lst[j])
-                    dic_r[element] = temp
-        cond = [k for k, v in dic_r.items() if v != []] #如无包含则空
-        dict_key_contained  = {key: dic_r[key] for key in cond} # k 报警器 v[火灾报警器，水灾报警器] 如无包含则空
-        List_key_contain = [k for k, v in dic_r.items() if v == []] #[火灾报警器，水灾报警器]
-        
-        return dict_key_contained,List_key_contain
+      def finditer(pattern, text):
+        start = 0
+        match = pattern.match(text, start)
+        while match:
+            yield match
+            start = match.end()
+            match = pattern.match(text, start)
 
-    def get_position(text,key_word,key_word_contained):
-        #获得关键字位置
-        key_word_contained_index = finditer(key_word_contained, text)
-        base_index = key_word.find(key_word_contained)
-        i = -base_index
-        j=  len(key_word) - base_index - len(key_word_contained)
-        result_index_o = [[substr.start(),substr.end()] for substr in key_word_contained_index] #被包含关键词的位置
-        result_index = [[x[0]+i,x[1]+j] for x in result_index_o] #关键词的位置
+      def remove_parentheses(text):
+          result = ""
+          depth = 0  # Track the depth of parentheses nesting
+          for char in text:
+              if char == '（':
+                  depth += 1
+              elif char == '）':
+                  depth -= 1
+                  continue
+              elif depth == 0:
+                  result += char
+          return result
 
-        return result_index,result_index_o
+      def filter_and_remove_elements(lst):
+          #获取无包含关系的关键词字典，以及包含关键字的对象
+          dic_r ={}
+          for i in lst:
+              dic_r[i] = []
+          for i in range(len(lst)):
+              element = lst[i]
+              is_contained = False
+              for j in range(len(lst)):
+                  if i != j and element in lst[j]:
+                      is_contained = True
+                      temp = dic_r[element]
+                      temp.append(lst[j])
+                      dic_r[element] = temp
+          cond = [k for k, v in dic_r.items() if v != []] #如无包含则空
+          dict_key_contained  = {key: dic_r[key] for key in cond} # k 报警器 v[火灾报警器，水灾报警器] 如无包含则空
+          List_key_contain = [k for k, v in dic_r.items() if v == []] #[火灾报警器，水灾报警器]
 
+          return dict_key_contained,List_key_contain
 
-    def key_words_gen(text):
-        #返回
-        special_keyword = text.strip().split('++')[0]
-        not_keyword = text.strip().split('--')[1]
-    
-        text = text.strip().split('++')[1].split('--')[0]
-    
-        try:
-            not_keyword = not_keyword.strip().split('\n')
-            not_keyword = [s.strip() for s in not_keyword if s.strip()]
-            not_keyword_dict = {}
-            for i in not_keyword:
-                not_keyword_dict[i] = '' 
-        except:
-            not_keyword_dict ={}
-    
-        try:
-            special_keyword = special_keyword.strip().split('\n')
-            special_keyword = [s.strip() for s in special_keyword if s.strip()]
-            special_keyword_dict = {}
-            for i in special_keyword:
-                try:
-                    v = i.split(' ')[1] #提前报错跳出
-                    k = i.split(' ')[0]
-                except:
-                    not_keyword_dict[k] = ' '
-                special_keyword_dict[k] = v 
-        except:
-            special_keyword_dict = {}
-    
-       ##如何解决特定关键词和避重关键词区域区分
-        lines = text.strip().split('\n')
-        lines = [s for s in lines if s.strip()]
-    
-        set_lst = set(lines)
-        # 比较集合的长度与列表的长度
+      def get_position(text,key_word,key_word_contained):
+          #获得关键字位置
+          key_word_contained_index = finditer(key_word_contained, text)
+          base_index = key_word.find(key_word_contained)
+          i = -base_index
+          j=  len(key_word) - base_index - len(key_word_contained)
+          result_index_o = [[substr.start(),substr.end()] for substr in key_word_contained_index] #被包含关键词的位置
+          result_index = [[x[0]+i,x[1]+j] for x in result_index_o] #关键词的位置
 
-        last_nodes = [0,0,0,0,0,0,0]
-        last_indent_level = 0
-        result_dict ={}
-        for line in lines:
-            indent_level = len(line) - len(line.lstrip())
-            if indent_level == 4:
-                return False
-            node = line.strip()
-            if indent_level > last_indent_level: #
-                last_alph = 'a'
-                if indent_level >= 3:
-                    sign = str(last_nodes[indent_level-1])+ last_alph
-                    last_alph = chr(ord(last_alph) + 1)
-    
-                else:
-                    factor = 10**(2-indent_level)
-                    sign = (last_nodes[indent_level-1]) + 1*factor
-                last_nodes[indent_level] = sign  ##加入上一级别位置
-                last_indent_level = indent_level
-                result_dict[node] = sign #
-    
-            elif indent_level < last_indent_level: #更新对应上
-                last_alph ='a'
-                factor = 10**(2-indent_level)
-                upper_numeral = last_nodes[indent_level]
-                
-                sign =  (upper_numeral + 1*factor)
-                last_nodes[indent_level] = sign ##更新当前级别位置
-    
-                last_indent_level = indent_level
-                result_dict[node] = sign #
-    
-            elif indent_level == last_indent_level:
-                if indent_level < 3:
-                    factor = 10**(2-indent_level)
-                    sign = last_nodes[indent_level] + 1*factor
-                    last_indent_level = indent_level
-                    result_dict[node] = sign #
-                    last_nodes[indent_level] = sign
-                else:
-                    sign = str(last_nodes[indent_level-1]) + last_alph
-                    last_alph = chr(ord(last_alph) + 1)
-                    last_indent_level = indent_level
-                    result_dict[node] = sign #
-                    last_nodes[indent_level] = sign
-        
-        for i in list(result_dict.keys()): #删除 占位关键词
-            if i[-1:] == '*':
-                result_dict.pop(i)
-    
-        
-        ##print(result_dict,special_keyword_dict,not_keyword_dict,)
-        # result_dict = {**result_dict,**not_keyword_dict}
-        # print(result_dict,2)
-        # result_dict = {**result_dict,**special_keyword_dict}
-        temp_d = {**not_keyword_dict,**special_keyword_dict}
-        result_dict = {**temp_d,**result_dict}
-        error =  [{key: value} for key, value in result_dict.items() if list(result_dict.values()).count(value) > 1 and result_dict[key] != '']
-        
-        if len(set_lst) != len(lines):
-            duplicates = [item for item in set_lst if lines.count(item) > 1]
-            print(duplicates,'重复')
-            return False,duplicates
-        
-        if len(error) !=0 :
-            print(error)
-            return error
-        return result_dict
-
-    def just_replace(text,key_words,key_words_numeral_dic,mode ='clm'):
-        
-        for key_word in key_words:
-            if mode == 'clm':
-                text =text.replace(key_word,"{}（{}）".format(key_word,key_words_numeral_dic[key_word]))
-            else:
-                text =text.replace(key_word,"{}{}".format(key_word,key_words_numeral_dic[key_word]))
-        text =text.replace("（）",'')
-        return  text
+          return result_index,result_index_o
 
 
-    def replace_fuc(text,key_words,key_words_numeral_dic,mode = 'clm'):
-        #先替换被包含关键词
-        #更好的实现方式是先替换为临时词 完成被包含词替换后 再将临时词替换为包含词
-        result = filter_and_remove_elements(key_words)
-        dict_key_contained = result[0]
-        List_key_contain = result[1]  #如[火灾报警器，水灾报警器]
-        List_key_contained = list(dict_key_contained.keys()) #如[报警器]
-        print(List_key_contained,'List_key_contained')
-        print(List_key_contain,'List_key_contain')
-    
-        for i in List_key_contained:
-            recover_dict = {}
-            for j in dict_key_contained[i]: #  dict_key_contained[i] 涉及到被包含关键词的关键词列表
-                space_holder = str(hash(j)) #关键词替换为hash值 避免干扰被包含关键词的替换
-                recover_dict[j] = space_holder #建立字典 用于复原文本 
-                text = text.replace(j,space_holder)
-            print('text0',text)
-            print('i',i,key_words_numeral_dic[i])
-            if mode == 'clm':
-                text =text.replace(i,"{}（{}）".format(i,key_words_numeral_dic[i]))
-                print('text1',text)
-            else:
-                text =text.replace(i,"{}{}".format(i,key_words_numeral_dic[i]))  
-    
-            for k,v in recover_dict.items():
-                text = text.replace(v,k) #hash值替换为关键词
-                print('txt3',text)
-        return just_replace(text,List_key_contain,key_words_numeral_dic,mode)
+      def key_words_gen(text):
+          #返回
+          special_keyword = text.strip().split('++')[0]
+          not_keyword = text.strip().split('--')[1]
+
+          text = text.strip().split('++')[1].split('--')[0]
+
+          try:
+              not_keyword = not_keyword.strip().split('\n')
+              not_keyword = [s.strip() for s in not_keyword if s.strip()]
+              not_keyword_dict = {}
+              for i in not_keyword:
+                  not_keyword_dict[i] = ''
+          except:
+              not_keyword_dict ={}
+
+          try:
+              special_keyword = special_keyword.strip().split('\n')
+              special_keyword = [s.strip() for s in special_keyword if s.strip()]
+              special_keyword_dict = {}
+              for i in special_keyword:
+                  try:
+                      v = i.split(' ')[1] #提前报错跳出
+                      k = i.split(' ')[0]
+                  except:
+                      not_keyword_dict[k] = ' '
+                  special_keyword_dict[k] = v
+          except:
+              special_keyword_dict = {}
+
+         ##如何解决特定关键词和避重关键词区域区分
+          lines = text.strip().split('\n')
+          lines = [s for s in lines if s.strip()]
+
+          set_lst = set(lines)
+          # 比较集合的长度与列表的长度
+
+          last_nodes = [0,0,0,0,0,0,0]
+          last_indent_level = 0
+          result_dict ={}
+          for line in lines:
+              indent_level = len(line) - len(line.lstrip())
+              if indent_level == 4:
+                  return False
+              node = line.strip()
+              if indent_level > last_indent_level: #
+                  last_alph = 'a'
+                  if indent_level >= 3:
+                      sign = str(last_nodes[indent_level-1])+ last_alph
+                      last_alph = chr(ord(last_alph) + 1)
+
+                  else:
+                      factor = 10**(2-indent_level)
+                      sign = (last_nodes[indent_level-1]) + 1*factor
+                  last_nodes[indent_level] = sign  ##加入上一级别位置
+                  last_indent_level = indent_level
+                  result_dict[node] = sign #
+
+              elif indent_level < last_indent_level: #更新对应上
+                  last_alph ='a'
+                  factor = 10**(2-indent_level)
+                  upper_numeral = last_nodes[indent_level]
+
+                  sign =  (upper_numeral + 1*factor)
+                  last_nodes[indent_level] = sign ##更新当前级别位置
+
+                  last_indent_level = indent_level
+                  result_dict[node] = sign #
+
+              elif indent_level == last_indent_level:
+                  if indent_level < 3:
+                      factor = 10**(2-indent_level)
+                      sign = last_nodes[indent_level] + 1*factor
+                      last_indent_level = indent_level
+                      result_dict[node] = sign #
+                      last_nodes[indent_level] = sign
+                  else:
+                      sign = str(last_nodes[indent_level-1]) + last_alph
+                      last_alph = chr(ord(last_alph) + 1)
+                      last_indent_level = indent_level
+                      result_dict[node] = sign #
+                      last_nodes[indent_level] = sign
+
+          for i in list(result_dict.keys()): #删除 占位关键词
+              if i[-1:] == '*':
+                  result_dict.pop(i)
 
 
-    def merge_replace_fuc(text,key_words,key_words_numeral_dic,mode = 'clm'):
-        # key_words_list 和 key_words_dic涉及后续迭代不能写入内部
-        if mode =='clm':
-            text = remove_parentheses(text)
-            
-            lst = text.strip().split('。')
-            sentences1_list = [ x.split("，", 1)[1] + '。' for x in lst[:-1]]
-            sentences2_list = [ x.split("，", 1)[0].strip()   for x in lst [:-1]]
+          ##print(result_dict,special_keyword_dict,not_keyword_dict,)
+          # result_dict = {**result_dict,**not_keyword_dict}
+          # print(result_dict,2)
+          # result_dict = {**result_dict,**special_keyword_dict}
+          temp_d = {**not_keyword_dict,**special_keyword_dict}
+          result_dict = {**temp_d,**result_dict}
+          error =  [{key: value} for key, value in result_dict.items() if list(result_dict.values()).count(value) > 1 and result_dict[key] != '']
 
-      
-            preresult = ''
-            for i in sentences1_list:
-                preresult = preresult+(i) #合并所有特征部分
-            preresult = replace_fuc(preresult,key_words,key_words_numeral_dic) #对特征部分进行序号替换
-            
-            preresult = preresult.strip().split('。')
-           
-            #print(sentences3_list)
-            finl_rslt = ''
-            for i,j in zip(sentences2_list,preresult):
-                finl_rslt = finl_rslt+(i) + '，'+ (j) + '。\n\n' #拼接前序部分和特征部分
+          if len(set_lst) != len(lines):
+              duplicates = [item for item in set_lst if lines.count(item) > 1]
+              print(duplicates,'重复')
+              return False,duplicates
 
-            return finl_rslt
-        else:
-            return  replace_fuc(text,key_words,key_words_numeral_dic,mode = 'des')
+          if len(error) !=0 :
+              print(error)
+              return error
+          return result_dict
 
+      def just_replace(text,key_words,key_words_numeral_dic,mode ='clm'):
 
-
-    def process_text(ev):
-        # 获取输入的待处理文本
-        text = document["inputText"].value
-        # 获取输入的特定字符
-        words_char = document["specialChar"].value
-
-        my_dict = key_words_gen(words_char)
-        keys_word_dict = my_dict
-        keys_word_list = list(my_dict.keys())
-        output = str(my_dict)
-        # 删除待处理文本中包含特定字符的部分
-
-        if document["optionA"].checked:
-          processed_text =  merge_replace_fuc(text,keys_word_list,keys_word_dict,mode = 'clm')
-        else:
-          processed_text =  merge_replace_fuc(text,keys_word_list,keys_word_dict,mode = 'des')
-
-          # 在输出框中显示处理后的文本
-        document["outputText"].value = processed_text
-        # 在底部文本显示框显示处理后的文本
-        document["bottomText"].value = output
-
-    def handle_button_click(ev):
-        # 当按钮被点击时调用处理文本函数
-        process_text(ev)
-
-    # 给处理按钮绑定点击事件
-    document["processButton"].bind("click", handle_button_click)
-
-    # 监听特定字符文本框的按键事件，将Tab键转换为制表符
-    document["specialChar"].bind("keydown", lambda ev: handle_tab_key(ev))
-
-    def handle_tab_key(ev):
-        # 如果按下的是Tab键
-        if ev.keyCode == 9:
-            # 阻止默认行为
-            ev.preventDefault()
-            # 获取光标位置
-            pos = document["specialChar"].selectionStart
-            # 将制表符插入到光标位置
-            document["specialChar"].value = document["specialChar"].value[:pos] + "\t" + document["specialChar"].value[pos:]
-            # 将光标移动到制表符之后
-            document["specialChar"].selectionStart = pos + 1
-            document["specialChar"].selectionEnd = pos + 1
-
-  </script>
+          for key_word in key_words:
+              if mode == 'clm':
+                  text =text.replace(key_word,"{}（{}）".format(key_word,key_words_numeral_dic[key_word]))
+              else:
+                  text =text.replace(key_word,"{}{}".format(key_word,key_words_numeral_dic[key_word]))
+          text =text.replace("（）",'')
+          return  text
 
 
-</body></html>
+      def replace_fuc(text,key_words,key_words_numeral_dic,mode = 'clm'):
+          #先替换被包含关键词
+          #更好的实现方式是先替换为临时词 完成被包含词替换后 再将临时词替换为包含词
+          result = filter_and_remove_elements(key_words)
+          dict_key_contained = result[0]
+          List_key_contain = result[1]  #如[火灾报警器，水灾报警器]
+          List_key_contained = list(dict_key_contained.keys()) #如[报警器]
+          print(List_key_contained,'List_key_contained')
+          print(List_key_contain,'List_key_contain')
+
+          for i in List_key_contained:
+              recover_dict = {}
+              for j in dict_key_contained[i]: #  dict_key_contained[i] 涉及到被包含关键词的关键词列表
+                  space_holder = str(hash(j)) #关键词替换为hash值 避免干扰被包含关键词的替换
+                  recover_dict[j] = space_holder #建立字典 用于复原文本
+                  text = text.replace(j,space_holder)
+              print('text0',text)
+              print('i',i,key_words_numeral_dic[i])
+              if mode == 'clm':
+                  text =text.replace(i,"{}（{}）".format(i,key_words_numeral_dic[i]))
+                  print('text1',text)
+              else:
+                  text =text.replace(i,"{}{}".format(i,key_words_numeral_dic[i]))
+
+              for k,v in recover_dict.items():
+                  text = text.replace(v,k) #hash值替换为关键词
+                  print('txt3',text)
+          return just_replace(text,List_key_contain,key_words_numeral_dic,mode)
+
+
+      def merge_replace_fuc(text,key_words,key_words_numeral_dic,mode = 'clm'):
+          # key_words_list 和 key_words_dic涉及后续迭代不能写入内部
+          if mode =='clm':
+              text = remove_parentheses(text)
+
+              lst = text.strip().split('。')
+              sentences1_list = [ x.split("，", 1)[1] + '。' for x in lst[:-1]]
+              sentences2_list = [ x.split("，", 1)[0].strip()   for x in lst [:-1]]
+
+
+              preresult = ''
+              for i in sentences1_list:
+                  preresult = preresult+(i) #合并所有特征部分
+              preresult = replace_fuc(preresult,key_words,key_words_numeral_dic) #对特征部分进行序号替换
+
+              preresult = preresult.strip().split('。')
+
+              #print(sentences3_list)
+              finl_rslt = ''
+              for i,j in zip(sentences2_list,preresult):
+                  finl_rslt = finl_rslt+(i) + '，'+ (j) + '。\n\n' #拼接前序部分和特征部分
+
+              return finl_rslt
+          else:
+              return  replace_fuc(text,key_words,key_words_numeral_dic,mode = 'des')
+
+
+
+      def process_text(ev):
+          # 获取输入的待处理文本
+          text = document["inputText"].value
+          # 获取输入的特定字符
+          words_char = document["specialChar"].value
+
+          my_dict = key_words_gen(words_char)
+          keys_word_dict = my_dict
+          keys_word_list = list(my_dict.keys())
+          output = str(my_dict)
+          # 删除待处理文本中包含特定字符的部分
+
+          if document["optionA"].checked:
+            processed_text =  merge_replace_fuc(text,keys_word_list,keys_word_dict,mode = 'clm')
+          else:
+            processed_text =  merge_replace_fuc(text,keys_word_list,keys_word_dict,mode = 'des')
+
+            # 在输出框中显示处理后的文本
+          document["outputText"].value = processed_text
+          # 在底部文本显示框显示处理后的文本
+          document["bottomText"].value = output
+
+      def handle_button_click(ev):
+          # 当按钮被点击时调用处理文本函数
+          process_text(ev)
+
+      # 给处理按钮绑定点击事件
+      document["processButton"].bind("click", handle_button_click)
+
+      # 监听特定字符文本框的按键事件，将Tab键转换为制表符
+      document["specialChar"].bind("keydown", lambda ev: handle_tab_key(ev))
+
+      def handle_tab_key(ev):
+          # 如果按下的是Tab键
+          if ev.keyCode == 9:
+              # 阻止默认行为
+              ev.preventDefault()
+              # 获取光标位置
+              pos = document["specialChar"].selectionStart
+              # 将制表符插入到光标位置
+              document["specialChar"].value = document["specialChar"].value[:pos] + "\t" + document["specialChar"].value[pos:]
+              # 将光标移动到制表符之后
+              document["specialChar"].selectionStart = pos + 1
+              document["specialChar"].selectionEnd = pos + 1
+    </script>
+  </body>
+</html>
